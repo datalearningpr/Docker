@@ -1,0 +1,30 @@
+version: '3.2'
+services:
+  web:
+    container_name: webserver
+    build: ./web
+    # volumes:
+    #   - ./web:/usr/src/app
+    ports:
+      - "5000:3000"
+    depends_on:
+      - mysql
+
+  mysql:
+    image: "mysql:5.7"
+    # restart: always
+    container_name: mysql_web
+    command: --default-authentication-plugin=mysql_native_password
+    environment:
+      MYSQL_ROOT_PASSWORD:  "123"
+      MYSQL_DATABASE: "testdb"
+      MYSQL_USER: "testuser" 
+      MYSQL_PASSWORD: "123"
+    volumes:
+      # - ./mysql/config/my.cnf:/etc/my.cnf
+      - mysqldata:/var/lib/mysql # backup file in the host volume
+      - ./mysql/init:/docker-entrypoint-initdb.d
+    ports:
+      - '3306:3306'
+volumes:
+  mysqldata: {}

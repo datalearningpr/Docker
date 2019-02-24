@@ -1,0 +1,19 @@
+{
+  "name": "node-express-mysql",
+  "version": "1.0.0",
+  "description": "```\r # build the image\r docker build -t python-flask .",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "nodemonConfig": {
+    "ignore": [],
+    "delay": "2500"
+  },
+  "dependencies": {
+    "express": "^4.16.4",
+    "mysql": "^2.16.0"
+  }
+}

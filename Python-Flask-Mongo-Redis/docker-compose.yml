@@ -1,0 +1,26 @@
+version: '3'
+services:
+  web:
+    container_name: webserver
+    build: .
+    volumes:
+      - ./:/usr/src/app
+    ports:
+      - "5000:5000"
+    environment:
+      - MONGO_URL=mongodb://mongo:27017/
+    depends_on:
+      - mongo
+      - redis
+  mongo:
+    container_name: mongo_web
+    image: "mongo"
+    ports:
+      - 27000:27017
+    volumes:
+      - ./mongo:/data/db
+  redis:
+    container_name: redis_web
+    image: "redis:alpine"
+    volumes:
+      - ./redis:/data
